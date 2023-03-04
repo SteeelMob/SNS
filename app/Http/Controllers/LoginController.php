@@ -10,20 +10,20 @@ class LoginController extends Controller
 {
     //
     //認証の試行を処理らしい...
-    public function login(Request $request)
-    {
-        $user_info = $request ->validate([
-            'email' => ['required','email'],
-            'password' => ['required']
-        ]);
+   // public function login(Request $request)
+    //{
+       // $user_info = $request ->validate([
+           // 'email' => ['required','email'],
+           // 'password' => ['required']
+       // ]);
 
         //ログイン成功時
-        if (Auth::attempt($user_info)){
-            $request ->session() ->regenerate();
-            return redirect() ->route('posts/index');
-        }
+        //if (Auth::attempt($user_info)){
+           // $request ->session() ->regenerate();
+           // return redirect() ->route('posts/index');
+       // }
 
         //ログイン失敗
-        return redirect() ->back();
-    }
+       // return redirect() ->back();
+    //}
 }
