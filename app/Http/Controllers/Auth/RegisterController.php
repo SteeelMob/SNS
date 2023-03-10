@@ -75,7 +75,7 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
-    public function register(Request $request){
+    public function register(Request $request){//inputしている値を使える
         if($request->isMethod('post')){
             $data = $request->input();
 
@@ -85,7 +85,14 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function added(){
+    public function added(Request $request){
+            $users = $request -> session() -> get('username', function(){
+               return '$data';
+            }); //クロージャー利用　処理の塊　
+
+      // dd($users); //値を確認できるもの
+
         return view('auth.added');
+
     }
 }

@@ -18,9 +18,12 @@
 
 //Auth::routes();
 
+//
+//Route::post('/top', 'Auth\LoginController@login');
+
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login') ->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -31,6 +34,7 @@ Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
+Route::post('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
 
