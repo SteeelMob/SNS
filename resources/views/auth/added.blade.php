@@ -3,8 +3,10 @@
 @section('content')
 
 <div id="clear">
-  <!--ファサードのAuthはインスタンスやidを取得するためのもの-->
-  <p> {{ $users }}さん</p>
+  <!--sessionでpタグはさんで名前を取得する---->
+  @if(session('username'))
+  <p> {{ session('username')}}さん</p>
+  @endif
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>

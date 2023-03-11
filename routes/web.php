@@ -33,8 +33,13 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
+Route::group(['middleware' => 'auth'], function () { //ログイン認証囲ページを囲む
 Route::get('/top','PostsController@index');
 Route::post('/top','PostsController@index');
+//ログインしている人のみ閲覧可能にするルーティング
+// Route::middleware(['web'])->group(function () {
+//     // ルート定義
+// });
 
 Route::get('/profile','UsersController@profile');
 
@@ -42,3 +47,4 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+});

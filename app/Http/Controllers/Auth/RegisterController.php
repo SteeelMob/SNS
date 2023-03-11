@@ -63,11 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([ //returnを$userに変更
             'username' => $data['username'],
             'mail' => $data['mail'],
             'password' => bcrypt($data['password']),
         ]);
+        //ユーザー名をセッションに保存
+        session()->flash('username',$user ->username);
+        return $user;
     }
 
 
@@ -85,12 +88,13 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function added(Request $request){
-            $users = $request -> session() -> get('username', function(){
-               return '$data';
-            }); //クロージャー利用　処理の塊　
+    public function added(){
+    //        $this ->create($data); //thisで別メソッドの処理が使える
+    //        $users = $request -> session() -> get('username', function(){
+    //             return '$username';
+    //          }); //クロージャー利用　処理の塊　
 
-      // dd($users); //値を確認できるもの
+    //    dd($username); //値を確認できるもの
 
         return view('auth.added');
 
