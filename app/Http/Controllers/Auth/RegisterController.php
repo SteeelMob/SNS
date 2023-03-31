@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'mail' => $data['mail'],
             'password' => bcrypt($data['password']),
         ]);
-        //ユーザー名をセッションに保存
+        //ユーザー名をセッションに保存 createがある場所じゃなきゃ×
         session()->flash('username',$user ->username);
         return $user;
     }

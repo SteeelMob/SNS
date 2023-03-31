@@ -23,7 +23,7 @@
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login') ->name('login');
+Route::get('/login', 'Auth\LoginController@login') ->name('login'); 
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -36,10 +36,9 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::group(['middleware' => 'auth'], function () { //ログイン認証囲ページを囲む
 Route::get('/top','PostsController@index');
 Route::post('/top','PostsController@index');
-//ログインしている人のみ閲覧可能にするルーティング
-// Route::middleware(['web'])->group(function () {
-//     // ルート定義
-// });
+//投稿用ルーティング
+Route::post('/create','PostsController@create');
+Route::get('/create','PostsController@create');
 
 Route::get('/profile','UsersController@profile');
 
@@ -47,4 +46,9 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+
+//ログアウト実装ルーティング
+Route::post('/logout','Auth\LoginController@logout'); //getとpostがあるのはログインではgetでページ移動のためpostでmailとpasswordを入力してログインさせるため
+Route::get('/logout','Auth\LoginController@logout'); //上記で行ってるのと同じ原理でログアウトのルーティングを記述
+
 });
