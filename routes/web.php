@@ -39,6 +39,8 @@ Route::post('/top','PostsController@index');
 //投稿用ルーティング
 Route::post('/create','PostsController@create');
 Route::get('/create','PostsController@create');
+//投稿の一覧表示
+Route::get('/posts' , 'PoseController@index');
 
 Route::get('/profile','UsersController@profile');
 

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Post;
+
 
 class User extends Authenticatable
 {
@@ -28,7 +30,7 @@ class User extends Authenticatable
     ];
 
     //post_tableとのリレーション
-     public function posts() 
+     public function posts()  //こっちは多なので複数
         {
             return $this->hasMany('App\Post');
         }

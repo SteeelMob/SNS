@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 //Postモデルを使用
-use app\Post;
-use app\User;
+use App\Post;
+use App\User;
 use Auth;
 //use Illuminate\Support\Facades\Auth; //もともとlaravelにあるAuthを使うため記述
 
@@ -14,12 +14,14 @@ class PostsController extends Controller
     //投稿フォームを画面に表示
     public function index()
     {
-       $list = Post::get();
-    //    $list = Auth::user();
-    //     $user = Auth::user(); //ログインしているデーター取得 //Authの部分がクラス
-    //     $list =Post::with('User')-> get('id'); //追加
+        // $list = Post::get();
+        // $list = \DB::table('posts') -> get(); //データベースから直で引っ張る
+        // $user = Auth::user(); //ログインしているデーター取得 //Authの部分がクラス
+        $list =Post::with('Users')-> get('id'); //追加 getのかっこにid入れるか入れないか
         return view('posts.index',['list'=>$list]); //['post'=>$list]を追加 ページ移動するときに作った変数をここに入れないと送れない！
         //    return view('posts.index');
+        $list = Auth::user();
+          //書き直し
     }
 
     //つぶやき登録
