@@ -9,6 +9,12 @@ use App\Post;
 
 class User extends Authenticatable
 {
+        //post_tableとのリレーション
+        public function posts()  //こっちは多なので複数
+        {
+            return $this->hasMany(Post::class);
+        }
+
     use Notifiable;
 
     /**
@@ -29,9 +35,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    //post_tableとのリレーション
-     public function posts()  //こっちは多なので複数
-        {
-            return $this->hasMany('App\Post');
-        }
+
 }
