@@ -44,5 +44,19 @@ class PostsController extends Controller
         return redirect('top');
     }
 
+    //編集
+    public function update(Request $request)
+    {
+        $id = $request ->input('id');
+        $up_post = $request->input('upPost');
+        // $post = \DB::table('posts')->where('id',$request->id)->update(['post' =>$up_post]);
+
+        // return redirect('/top');
+        //最初のレコードを返すメソッド　単一の取得の時にfirstを使う
+        Post::where('id' , $id)->update(['post' => $up_post]);
+        return redirect('/top');
+    }
+
+
 
 }

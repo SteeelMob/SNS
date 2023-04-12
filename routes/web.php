@@ -41,6 +41,8 @@ Route::post('/create','PostsController@create');
 Route::get('/create','PostsController@create');
 //投稿の一覧表示
 Route::get('/posts' , 'PoseController@index');
+//編集用 送信方法はpost
+Route::post('/post/update','PostsController@update');
 
 Route::get('/profile','UsersController@profile');
 

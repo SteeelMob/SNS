@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.login')<!--ログインブレードに共通化されているから-->
 
 @section('content')
 <h2>機能を実装していきましょう</h2>
@@ -19,10 +19,36 @@
        <tr>
         <td>{{ $list ->user ->username }}</td>
         <td>{{ $list ->post }}</td>
-        <td>{{ $list ->created_at }}</td> 
+        <td>{{ $list ->created_at }}</td>
+        <!--更新用-->
+        <td><div class="content">
+            <a class="js-modal-open" href="" post="{{$list ->post }}" post_id="{{ $list->id }}">
+            <img class="Update" src="./images/edit.png" alt="編集" />
+            </a></div>
+        </td>
+        <!--消去用-->
+        <td><a class="btn btn-danger" href="/post/{{$list->id}}/delete" onclick="return confirm('この投稿を消去します。よろしいでしょうか？')">
+        <img class="Trash" src="./images/trash.png" alt="消去" /></a>
+        </td>
        </tr>
        @endforeach
        </table>
+
+       <!--モーダル-->
+       <div class="modal js-modal">
+        <div class="modal_bg js-modal-close"></div>
+        <div class="modal_content">
+            <form action="/post/update" method="post">
+                <textarea name="upPost" class="modal_post"></textarea>
+                <input type="hidden" name="id" class="modal_id" value="">
+                <input type="submit" value="更新">
+            </form>
+                {{ csrf_field() }}
+            </form>
+            <a class="js-modal-close" href="">閉じる</a>
+        </div>
+       </div>
+
 
 
 
