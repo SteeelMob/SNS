@@ -43,10 +43,13 @@ Route::get('/create','PostsController@create');
 Route::get('/posts' , 'PoseController@index');
 //編集用 送信方法はpost
 Route::post('/post/update','PostsController@update');
+//消去用
+Route::get('/post/{id}/delete','PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search')->name('search'); //
+Route::post('/search','UsersController@search'); //indexをsearchに変更
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
@@ -54,5 +57,10 @@ Route::get('/follower-list','PostsController@index');
 //ログアウト実装ルーティング
 Route::post('/logout','Auth\LoginController@logout'); //getとpostがあるのはログインではgetでページ移動のためpostでmailとpasswordを入力してログインさせるため
 Route::get('/logout','Auth\LoginController@logout'); //上記で行ってるのと同じ原理でログアウトのルーティングを記述
+
+//フォロー
+Route::post('/users/{user}/follow','FollowsController@follow')->name('follow');
+Route::delete('/users/{user}/unfollow','FollowsController@unfollow')->name('unfollow');
+
 
 });

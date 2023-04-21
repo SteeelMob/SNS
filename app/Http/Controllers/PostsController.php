@@ -31,7 +31,7 @@ class PostsController extends Controller
         $user = Auth::user()->id; //ユーザーの値を
 
         Post::create([ //posttableを参照させてみる　
-            'user_id' =>$user_id,
+            'user_id' =>$user,
             'post' => $post
         ]);
 
@@ -54,7 +54,14 @@ class PostsController extends Controller
         // return redirect('/top');
         //最初のレコードを返すメソッド　単一の取得の時にfirstを使う
         Post::where('id' , $id)->update(['post' => $up_post]);
-        return redirect('/top');
+        return redirect('top');
+    }
+
+    //消去
+    public function delete($id)
+    {
+        Post::where('id', $id)->delete();
+        return redirect('top');
     }
 
 

@@ -38,11 +38,10 @@
        <div class="modal js-modal">
         <div class="modal_bg js-modal-close"></div>
         <div class="modal_content">
-            <form action="/post/update" method="post">
+            <form action="/post/update" method="POST">
                 <textarea name="upPost" class="modal_post"></textarea>
                 <input type="hidden" name="id" class="modal_id" value="">
                 <input type="submit" value="更新">
-            </form>
                 {{ csrf_field() }}
             </form>
             <a class="js-modal-close" href="">閉じる</a>

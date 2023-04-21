@@ -17,6 +17,38 @@ class User extends Authenticatable
 
     use Notifiable;
 
+    //フォロー機能
+    public function following()
+    {
+        return $this ->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+    }
+    //フォロー解除
+    public function followed()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follows', 'following_id','followed_id');
+    }
+    //フォローする 
+    public function follow(Int $user_id)
+    {
+        //上記メソッドとそろえる
+        return $this->following()->attach($user_id);
+    }
+    //フォロー解除する
+    public function unfollow($user_id)
+    {
+        return $this->following()->detach($user_id);
+    }
+    //フォローしてるか
+    public function isFollowing($user_id)
+    {
+        return(boolean) $this->following()->where('followed_id', $user_id)->first();
+    }
+    //フォローされているか
+    public function isFollowed($user_id)
+    {
+        return(boolean) $this->followed()->where('following_id', $user_id)->first();
+    }
+
     /**
      * The attributes that are mass assignable.
      *

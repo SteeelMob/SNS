@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\User;
+
 class Follow extends Model
 {
-    //
+    //中間テーブルでフォロー機能
+    protected $fillable =['user_id','follower_id'];
 }
