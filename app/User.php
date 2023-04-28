@@ -21,6 +21,10 @@ class User extends Authenticatable
     public function following()
     {
         return $this ->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+//  第一引数には使用するモデル
+// 第二引数には使用するテーブル名
+// 第三引数にはリレーションを定義しているモデルの外部キー名 （取得したい情報）
+// 第四引数には結合するモデルの外部キー名 （あまりものを）
     }
     //フォロー解除
     public function followed()
@@ -34,19 +38,19 @@ class User extends Authenticatable
         return $this->following()->attach($user_id);
     }
     //フォロー解除する
-    public function unfollow($user_id)
+    public function unfollow(Int $user_id)
     {
         return $this->following()->detach($user_id);
     }
     //フォローしてるか
-    public function isFollowing($user_id)
+    public function isFollowing(Int $user_id)
     {
-        return(boolean) $this->following()->where('followed_id', $user_id)->first();
+        return(boolean) $this->following()->where('followed_id', $user_id)->first(['id']);
     }
     //フォローされているか
-    public function isFollowed($user_id)
+    public function isFollowed(Int $user_id)
     {
-        return(boolean) $this->followed()->where('following_id', $user_id)->first();
+        return(boolean) $this->followed()->where('following_id', $user_id)->first(['id']);
     }
 
     /**

@@ -13,6 +13,7 @@ class UsersController extends Controller
     {
          $users = User::get();
          $searchWord =$request->input('searchWord');
-         return view('users.search',['searchWord',['searchWord'=>$searchWord, 'users'=>$users]]);
+         return view('users.search')->with(['users' => $users, 'searchWord' => $searchWord]);
+         
     }
 }

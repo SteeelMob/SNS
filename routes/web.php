@@ -58,7 +58,8 @@ Route::get('/follower-list','PostsController@index');
 Route::post('/logout','Auth\LoginController@logout'); //getとpostがあるのはログインではgetでページ移動のためpostでmailとpasswordを入力してログインさせるため
 Route::get('/logout','Auth\LoginController@logout'); //上記で行ってるのと同じ原理でログアウトのルーティングを記述
 
-//フォロー
+
+//フォロー/解除のルーティング
 Route::post('/users/{user}/follow','FollowsController@follow')->name('follow');
 Route::delete('/users/{user}/unfollow','FollowsController@unfollow')->name('unfollow');
 
