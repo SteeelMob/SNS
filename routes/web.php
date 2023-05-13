@@ -47,12 +47,19 @@ Route::post('/post/update','PostsController@update');
 Route::get('/post/{id}/delete','PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
+//プロフィール編集
+Route::get('/profile/update','UsersController@update');
 
-Route::get('/search','UsersController@search')->name('search'); //
-Route::post('/search','UsersController@search'); //indexをsearchに変更
+Route::get('/search','UsersController@search')->name('users.search'); //nameでルート名を記述
+Route::post('/search','UsersController@search');//indexをsearchに変更
+// Route::get('/searching','UsersController@searching')->name('posts.searching');
+// Route::post('/searching','UsersController@searching');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+//フォローフォロワーリスト
+Route::get('/followList','PostsController@followList')->name('followList');
+Route::post('/followList','PostsController@followList');
+Route::get('/followerList','PostsController@followerList')->name('followerList');
+Route::post('/followerList','PostsController@followerList');
 
 //ログアウト実装ルーティング
 Route::post('/logout','Auth\LoginController@logout'); //getとpostがあるのはログインではgetでページ移動のためpostでmailとpasswordを入力してログインさせるため

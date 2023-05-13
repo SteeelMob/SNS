@@ -42,4 +42,14 @@ class FollowsController extends Controller
             return back();
         }
     }
+
+    // //フォローリスト
+    // public function followList(Post $post, User $user, Follow $follower)
+    // {
+    //     $following = auth()->user()->following()->get();
+    //     $following_id = $follower->followingId($user->id);
+    //     $following
+    // }
+
+
 }

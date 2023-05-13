@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
+use App\Follow;
 
 
 class User extends Authenticatable
@@ -20,7 +21,7 @@ class User extends Authenticatable
     //フォロー機能
     public function following()
     {
-        return $this ->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+        return $this ->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
 //  第一引数には使用するモデル
 // 第二引数には使用するテーブル名
 // 第三引数にはリレーションを定義しているモデルの外部キー名 （取得したい情報）
@@ -29,7 +30,7 @@ class User extends Authenticatable
     //フォロー解除
     public function followed()
     {
-        return $this->belongsToMany(User::class, 'follows', 'follows', 'following_id','followed_id');
+        return $this->belongsToMany(User::class, 'follows', 'followed_id','following_id');
     }
     //フォローする 
     public function follow(Int $user_id)
@@ -45,12 +46,12 @@ class User extends Authenticatable
     //フォローしてるか
     public function isFollowing(Int $user_id)
     {
-        return(boolean) $this->following()->where('followed_id', $user_id)->first(['id']);
+        return(boolean) $this->following()->where('followed_id', $user_id)->first();
     }
     //フォローされているか
     public function isFollowed(Int $user_id)
     {
-        return(boolean) $this->followed()->where('following_id', $user_id)->first(['id']);
+        return(boolean) $this->followed()->where('following_id', $user_id)->first();
     }
 
     /**
