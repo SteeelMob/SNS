@@ -2,14 +2,37 @@
 
 @section('content')
 
-{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post']) !!}
+{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post', "enctype" => "multipart/form-data"]) !!}
 {!! Form::hidden('id',$auth->id) !!}
-
-<p>{{ Form::label('username','user name') }}</p>
-<p>{{ Form::text('username',$auth->username ) }}</p>
-<p>{{ Form::label('mail','mail') }}</p>
-<p>{{ Form::label('password','password') }}</p>
-<p>{{ Form::label('password_confirm','password confirm') }}</p>
-<p>{{ Form::label('bio','bio') }}</p>
+<tr>
+<td>
+{{ Form::label('username','user name') }}
+{{ Form::text('username',$auth->username,['class' => 'input'] ) }}
+</td>
+<td>
+{{ Form::label('mail','mail') }}
+{{ Form::text('mail',$auth->mail,['class' => 'input'] ) }}
+</td>
+<td>
+{{ Form::label('password','password') }}
+{{ Form::text('password',$auth->password,['class' => 'input'] ) }}
+</td>
+<td>
+{{ Form::label('password_confirm','password confirm') }}
+{{ Form::text('password_confirm',$auth->password,['class' => 'input'] ) }}
+</td>
+<td>
+{{ Form::label('bio','bio') }}
+{{ Form::text('bio',$auth->bio,['class' => 'input']) }}
+</td>
+<td>
+{{ Form::label('image','image') }}
+{{ Form::file('image',['class'=>'input','id'=>'iconimage']) }}
+</td>
+<td>
+{{ Form::submit('更新') }}
+</td>
+</tr>
+{!!Form::close()!!}
 
 @endsection

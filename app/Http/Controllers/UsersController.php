@@ -49,23 +49,32 @@ class UsersController extends Controller
         //編集 ここからいじる
         public function update(Request $request)
         {
-            $id = $request ->input('id');
-            $username  = $request->input('username');
-            $mail  = $request->input('mail');
-            $password = $request->input('password');
-            $bio = $request->input('bio');
+            // $id = $request ->input('id');
+            // $username  = $request->input('username');
+            // $mail  = $request->input('mail');
+            // $password = $request->input('password');
+            // $bio = $request->input('bio');
 
-            // $post = \DB::table('posts')->where('id',$request->id)->update(['post' =>$up_post]);
-    
-            // return redirect('/top');
-            //最初のレコードを返すメソッド　単一の取得の時にfirstを使う
-            User::where('id' , $id)->update(
-                ['username' => $username],
-                ['mail' => $mail],
-                ['password' =>bcrypt($password)],
-                ['bio' => $bio ],
-            );
-            return redirect('profile');
+            // User::where('id' , $id)->update(
+            //     ['username' => $username],
+            //     ['mail' => $mail],
+            //     ['password' =>bcrypt($password)],
+            //     ['bio' => $bio ],
+            // );
+            // return redirect('top');
+
+            $user = Auth::user();
+            //画像登録 アイコンはシンボリックリンク使用
+            $image = $request->file('iconimage')->store('public/images');
+            // $validator->validate();
+            $user->update([
+                'username' => $request->input('username'),
+                'mail' => $request->input('mail'),
+                'password' => bcrypt($request->input('password')),
+                'bio' => $request->input('bio'),
+                'images' => basename($image),
+            ]);
+
         }
 
 }
