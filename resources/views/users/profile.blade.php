@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post', "enctype" => "multipart/form-data"]) !!}
+{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post','files' => true]) !!}
 {!! Form::hidden('id',$auth->id) !!}
 <tr>
 <td>
@@ -26,8 +26,8 @@
 {{ Form::text('bio',$auth->bio,['class' => 'input']) }}
 </td>
 <td>
-{{ Form::label('image','image') }}
-{{ Form::file('image',['class'=>'input','id'=>'iconimage']) }}
+{{ Form::label('images','images') }}
+{{ Form::file('images',['class'=>'input','id'=>'images']) }}
 </td>
 <td>
 {{ Form::submit('更新') }}

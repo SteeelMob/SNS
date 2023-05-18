@@ -65,7 +65,7 @@ class UsersController extends Controller
 
             $user = Auth::user();
             //画像登録 アイコンはシンボリックリンク使用
-            $image = $request->file('iconimage')->store('public/images');
+            $image = $request->file('images')->store('public/storage');
             // $validator->validate();
             $user->update([
                 'username' => $request->input('username'),
@@ -74,6 +74,8 @@ class UsersController extends Controller
                 'bio' => $request->input('bio'),
                 'images' => basename($image),
             ]);
+
+            return redirect('top');
 
         }
 
