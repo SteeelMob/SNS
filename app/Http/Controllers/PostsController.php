@@ -29,8 +29,10 @@ class PostsController extends Controller
 // whereIn('user_id')　user_idが
 // Auth::user()->follows()->pluck('followed_user_id')　自分がフォローしているユーザーの中でフォロワーが自分であるユーザーを取得して
 // latest()->get()　最新順に取得する
-          return view('posts.index', ['list'=>$list]);
+          $auth = Auth::user();
+          return view('posts.index', ['list'=>$list , 'auth' => $auth , ]);
     }
+
     //フォローリストに投稿フォーム表示
     public function followList()
     {

@@ -6,7 +6,11 @@
 <!--投稿フォーム-->
 <div class='container'>
     <h2 class ="page-header">投稿一覧</h2>
+    @if($auth->images == null)
     <img src="images/icon1.png">
+    @else
+    <img src="{{ asset('/storage/' .$auth->images) }}" alt= "アイコン" class="icon">
+    @endif
     {!! Form::open(['url' => '/create']) !!}
     <div class="form-group">
         {!! Form::text ('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
@@ -17,6 +21,13 @@
       <table class="table table-hover"> <!--テーブル列にマウスを乗せた際に背景変更するもの-->
        @foreach ($list as $list)
        <tr>
+        <td>
+        @if($list->images == null)
+        <img src="images/icon1.png">
+        @else
+        <img src="{{ asset('/storage/' .$list->images) }}" alt= "アイコン" class="icon">
+        @endif
+        </td>
         <td>{{ $list ->user ->username }}</td>
         <td>{{ $list ->post }}</td>
         <td>{{ $list ->created_at }}</td>

@@ -82,6 +82,21 @@ class RegisterController extends Controller
         if($request->isMethod('post')){
             $data = $request->input();
 
+            //バリデーション
+            $rules =[
+                'username' => 'required|string|min:2|max:12',
+                'mail' => 'required|string|email|min:5|max:40|unique:users',
+                'password' => 'required|string|min:8|max:20|alpha_num|confirmed',
+                'password_confirmation' => 'required|string|min:8|max:20|alpha_num',
+            ];
+
+            $validator =Validator::make($data,$rules);
+            if($validator->fails()){
+                return redirect('/register')
+                ->withErrors($validator)
+                ->withInput();
+            }
+
             $this->create($data);
             return redirect('added');
         }

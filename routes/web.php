@@ -49,6 +49,10 @@ Route::get('/post/{id}/delete','PostsController@delete');
 Route::get('/profile','UsersController@profile');
 //プロフィール編集
 Route::post('/profile/{id}/update','UsersController@update');
+//他のプロフィール
+Route::get('/users/{id}/userprofile','UsersController@userProfile')->name('userprofile');
+
+
 
 Route::get('/search','UsersController@search')->name('users.search'); //nameでルート名を記述
 Route::post('/search','UsersController@search');//indexをsearchに変更

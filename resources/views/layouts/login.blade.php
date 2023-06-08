@@ -18,6 +18,8 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+    <!-- css -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <!--CSSのBootstrap 記述は共通ファイルのhead内の下-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- jQueryはヘッダー内へ -->
@@ -31,7 +33,7 @@
         <h1><a href="/top"><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
+                    <p>{{ Auth::user()->username }}さん<img src="images/arrow.png"></p>
                 <div>
                     <button type="button" class="menu-btn">
                         <span class="inn"></span>
@@ -52,7 +54,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>{{ Auth::user()->following()->count() }}名</p>

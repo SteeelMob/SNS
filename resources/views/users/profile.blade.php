@@ -2,8 +2,26 @@
 
 @section('content')
 
-{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post','files' => true]) !!}
+<figure class="icon">
+    <img src="{{ asset('/storage/' .$auth->image) }}" alt= "アイコン" class="icon">
+</figure>
+
+{!! Form::open(['url' => ['/profile/{id}/update'],'files' => true]) !!}
 {!! Form::hidden('id',$auth->id) !!}
+@csrf
+
+<!-- エラーメッセージ -->
+<p>{{ $errors->count() }}</p>
+@if($errors->any())
+<div>
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <tr>
 <td>
 {{ Form::label('username','user name') }}
@@ -15,11 +33,11 @@
 </td>
 <td>
 {{ Form::label('password','password') }}
-{{ Form::text('password',$auth->password,['class' => 'input'] ) }}
+{{ Form::text('password',null,['class' => 'input'] ) }}
 </td>
 <td>
-{{ Form::label('password_confirm','password confirm') }}
-{{ Form::text('password_confirm',$auth->password,['class' => 'input'] ) }}
+{{ Form::label('password_confirmation','password confirmation') }}
+{{ Form::text('password_confirmation',null,['class' => 'input'] ) }}
 </td>
 <td>
 {{ Form::label('bio','bio') }}
@@ -27,7 +45,7 @@
 </td>
 <td>
 {{ Form::label('images','images') }}
-{{ Form::file('images',['class'=>'input','id'=>'images']) }}
+{{ Form::file('images',['class'=>'input form-control']) }}
 </td>
 <td>
 {{ Form::submit('更新') }}

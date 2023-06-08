@@ -23,7 +23,11 @@
 <div>
     <tr>
         <td>
-            <img src="storage/{{ $users -> images }}" alt="icon" class="icon-space">
+            @if($users->images == null)
+            <img src="images/icon1.png">
+            @else
+            <img src="storage/{{ $users -> images }}" alt="icon" class="icon">
+            @endif
         </td>
         <td>{{ $users -> username }}</td>
         <td>
