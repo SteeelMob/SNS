@@ -2,16 +2,20 @@
 
 @section('content')
 
-<div id="clear">
+<div id="clear" class="add-inner">
   <!--sessionでpタグはさんで名前を取得する---->
   @if(session('username'))
-  <p> {{ session('username')}}さん</p>
+  <p class="add-user"> {{ session('username')}}さん</p>
   @endif
-  <p>ようこそ！AtlasSNSへ！</p>
-  <p>ユーザー登録が完了しました。</p>
-  <p>早速ログインをしてみましょう。</p>
-
-  <p class="btn"><a href="/login">ログイン画面へ</a></p>
+  <p class="add-welcome">ようこそ！AtlasSNSへ！</p>
+  <p class="add-text">ユーザー登録が完了いたしました。
+    <br>早速ログインをしてみましょう！
+    <!-- brで改行 -->
+  </p>
+  
+<div class="added-btn">
+  <p class="back-btn btn btn-danger btn-sm w-50"><a href="/login">ログイン画面へ</a></p>
+  </div>
 </div>
 
 <!--テスト6-->

@@ -4,6 +4,7 @@
 
 <div class = "login-inner">
 {!! Form::open(['url' => '/login','class' => 'login-form']) !!}
+@csrf
 <p class = "start">AtlasSNSへようこそ</p>
 
 

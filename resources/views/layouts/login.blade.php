@@ -22,6 +22,8 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!--CSSのBootstrap 記述は共通ファイルのhead内の下-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- cssのfont awesome 利用 -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!-- jQueryはヘッダー内へ -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/script.js"></script>
@@ -29,24 +31,40 @@
 
 <body>
     <header>
-        <div id = "head">
-        <h1><a href="/top"><img src="images/atlas.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>{{ Auth::user()->username }}さん<img src="images/arrow.png"></p>
-                <div>
-                    <button type="button" class="menu-btn">
+      <div id = "head">
+        <div class ="header-top">
+            <h1><a href="/top"><img src="{{asset('images/atlas.png')}}"></a></h1>
+             <div id="accordion" class="accordion-container">
+                    <div class ="accordion-title js-accordion-title">
+                    <p>{{ Auth::user()->username }}さん</p>
+                    <p class="accordion-point"></p>
+                    <p class="acc-img">
+                    @if($auth->images == "dawn.png")
+                    <img src="{{asset('images/icon1.png')}}" class="icon">
+                    @else
+                    <img src="{{ asset('/storage/' .$auth->images) }}" alt= "アイコン" class="icon">
+                    @endif
+                    </p>
+                    </div>
+                    <!-- <button type="button" class="menu-btn">
                         <span class="inn"></span>
                     </button>
-                    <nav class="menu">
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+                    <nav class="menu"> -->
+             <div class="accordion-content">
+                <ul class="accordion-list">
+                    <li class="accordion-btn"><a href="/top">HOME</a></li>
+                    <li class="accordion-btnn"><a href="/profile">プロフィール編集</a></li>
+                    <li class="accordion-btnnn"><a href="/logout">ログアウト</a></li>
                 </ul>
-                </nav>
-            </div>
+                </div>
+                <!-- <figure class="icon">
+                <img src="images/arrow.png">
+                </figure> -->
+                
+                <!-- </nav> -->
+            </div> 
         </div>
+     </div>
     </header>
     <div id="row">
         <div id="container">
@@ -54,19 +72,19 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                <div>
+                <p class="side-name">{{ Auth::user()->username }}さんの</p>
+                <div class="count">
                 <p>フォロー数</p>
                 <p>{{ Auth::user()->following()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/followList">フォローリスト</a></p>
-                <div>
+                <button type="button" class="side-btn btn-primary side-btn"><a href="/followList">フォローリスト</a></button>
+                <div class="count">
                 <p>フォロワー数</p>
                 <p>{{ Auth::user()->followed()-> count() }}名</p>
                 </div>
-                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
+                <button type="button" class="side-btn btn-primary side-btn"><a href="/followerList">フォロワーリスト</a></button>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <button type="button" class="search-btn  btn-primary "><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

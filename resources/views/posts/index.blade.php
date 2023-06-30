@@ -1,61 +1,70 @@
 @extends('layouts.login')<!--ログインブレードに共通化されているから-->
 
 @section('content')
-<h2>機能を実装していきましょう</h2>
 
 <!--投稿フォーム-->
 <div class='container'>
-    <h2 class ="page-header">投稿一覧</h2>
-    @if($auth->images == null)
-    <img src="images/icon1.png">
+<div class="form-group">
+    @if($auth->images == "dawn.png")
+    <img src="images/icon1.png" class="icon">
     @else
     <img src="{{ asset('/storage/' .$auth->images) }}" alt= "アイコン" class="icon">
     @endif
-    {!! Form::open(['url' => '/create']) !!}
-    <div class="form-group">
-        {!! Form::text ('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
-       </div>
-       <button type="submit" class="btn btn-success pull-right"><img src="images/post.png"></button>
+    {!! Form::open(['url' => '/create','class' => 'form-inner']) !!}
+    @csrf
+        {!! Form::textarea ('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください']) !!}
+        <button type="submit" class="btn-success"><img src="images/post.png"></button>
        {!! Form::close()!!}
+       </div>
 
-      <table class="table table-hover"> <!--テーブル列にマウスを乗せた際に背景変更するもの-->
+       <!--テーブル列にマウスを乗せた際に背景変更するもの-->
        @foreach ($list as $list)
-       <tr>
-        <td>
-        @if($list->images == null)
-        <img src="images/icon1.png">
+       <div class="table table-hover">
+       <!-- <ul> -->
+        <p class="table-top">
+        @if($list->user->images == "dawn.png")
+        <img src="images/icon1.png" class="icon">
         @else
-        <img src="{{ asset('/storage/' .$list->images) }}" alt= "アイコン" class="icon">
+        <img src="{{ asset('/storage/' .$list->user->images) }}" alt= "アイコン" class="icon">
         @endif
-        </td>
-        <td>{{ $list ->user ->username }}</td>
-        <td>{{ $list ->post }}</td>
-        <td>{{ $list ->created_at }}</td>
+        </p>
+        <div class="table-name">
+        <p class ="table-user">{{ $list ->user ->username }}</p>
+        <p class ="table-post">{{ $list ->post }}</p>
+        </div>
+        <div class="table-create">
+        <p class ="table-time">{{ $list ->created_at }}</p>
         <!--更新用-->
-        <td><div class="content">
+        <div class="content">
             <a class="js-modal-open" href="" post="{{$list ->post }}" post_id="{{ $list->id }}">
             <img class="Update" src="./images/edit.png" alt="編集" />
-            </a></div>
-        </td>
+            </a>
+       
         <!--消去用-->
-        <td><a class="btn btn-danger" href="/post/{{$list->id}}/delete" onclick="return confirm('この投稿を消去します。よろしいでしょうか？')">
-        <img class="Trash" src="./images/trash.png" alt="消去" /></a>
-        </td>
-       </tr>
+        <div class="btn-trash">
+        <a href="/post/{{$list->id}}/delete" onclick="return confirm('この投稿を消去します。よろしいでしょうか？')">
+        <img class="Trash-h" src="./images/trash-h.png" alt="消去" />
+        <img class="Trash" src="./images/trash.png" alt="消去" />
+        </a>
+        </div>
+       </div>
+       </div>
+       <!-- </ul> -->
+       </div>
        @endforeach
-       </table>
+       
 
        <!--モーダル-->
        <div class="modal js-modal">
-        <div class="modal_bg js-modal-close"></div>
-        <div class="modal_content">
+        <div class="modal-bg js-modal-close"></div>
+        <div class="modal-content">
             <form action="/post/update" method="POST">
                 <textarea name="upPost" class="modal_post"></textarea>
                 <input type="hidden" name="id" class="modal_id" value="">
-                <input type="submit" value="更新">
+                <button type="submit" class="btn-up"><img class="Update" src="./images/edit.png" alt="編集" /></button>
                 {{ csrf_field() }}
             </form>
-            <a class="js-modal-close" href="">閉じる</a>
+            <!-- <a class="js-modal-close" href="">閉じる</a> -->
         </div>
        </div>
 

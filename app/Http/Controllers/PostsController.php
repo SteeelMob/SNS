@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //Postモデルを使用
 use App\Post;
 use App\User;
+use DB;
 use Auth;
 //use Illuminate\Support\Facades\Auth; //もともとlaravelにあるAuthを使うため記述
 
@@ -37,13 +38,29 @@ class PostsController extends Controller
     public function followList()
     {
         $list = Post::query()->whereIn('posts.user_id', Auth::user()->following()->pluck('followed_id'))->latest()->get();
-        return view('follows.followList', ['list' =>$list]);
+        $auth = Auth::user();
+        // $follow_user = $auth ->following() ->get();
+        // $follow_user = Post::query()->whereIn('posts.users.id' , Auth::user()->following()->pluck('followed_id'))->latest()->get();
+        // アイコン用
+        $images = DB::table('users')->get();
+        $images = auth()->user()->following()->get();
+        return view('follows.followList', ['list' =>$list ,'auth' => $auth , 'images' => $images]);
     }
+    // public function followIcon(){
+    //     $follow_user = Auth::user()->following()->pluck('followed_id') ->get();
+    //     dd($follow_user);
+    //     return view('follows.followList',['follow_user'=>$follow_user]);
+    // }
+
     //フォロワーリストに投稿フォーム表示
     public function followerList()
     {
         $list = Post::query()->whereIn('posts.user_id', Auth::user()->followed()->pluck('following_id'))->latest()->get();
-        return view('follows.followerList', ['list' =>$list]);
+        $auth = Auth::user();
+        // アイコン用
+        $images = DB::table('users')->get();
+        $images = auth()->user()->followed()->get();
+        return view('follows.followerList', ['list' =>$list , 'auth' => $auth , 'images' => $images]);
     }
     //フォロー数
 

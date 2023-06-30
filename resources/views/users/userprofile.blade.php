@@ -1,50 +1,55 @@
 @extends('layouts.login')
 
 @section('content')
-<h2>プロフィール</h2>
-
-<tr>
-<td>
-        @if($list->images == null)
-        <img src="images/icon1.png">
+<div class="userpro-content">
+        <p class="userpro-top">
+        @if($list->images == "dawn.png")
+        <img src="{{ asset('images/icon1.png') }}" class="icon">
         @else
-        <img src="{{ asset('/storage/' .$list->images) }}" alt= "アイコン" class="icon">
+        <img src="{{ asset('storage/' .$list->images) }}" alt= "アイコン" class="icon">
         @endif
-        </>
-</td>
-</tr>
-<tr>
-    <td>name</td>
-    <td>{{ $list->username }}</td>
-    <td>
+        </p>
+        <div class="userpro-title">
+    <p>name</p>
+    <p>bio</p>
+    </div>
+    <div class="userpro-text">
+    <p>{{ $list->username }}</p>
+    <p>{{ $list->bio }}</p>
+    </div>
+    <div class="userpro-btn">
+    <p>
     @if(auth()->user()->isFollowing($list->id))
             <form action="{{ route('unfollow', ['user' => $list->id]) }}" method="POST">
                  @csrf
                  {{ method_field('DELETE') }}
-                 <button type="submit" class="btn btn-danger">フォロー解除する</button>
+                 <button type="submit" class="user-btn btn-danger">フォロー解除</button>
             </form>
             @else
             <form action="{{ route('follow',  ['user' => $list->id]) }}" method="POST">
                  @csrf
-                 <button type="submit" class="btn btn-primary">フォローする</button>
+                 <button type="submit" class="user-btn btn-primary">フォローする</button>
                 </form>
             @endif
-    </td>
-</tr>
+    </p>
+    </div>
+</div>
 
 @foreach ($post as $post)
-<tr>
-        <td>
-        @if($post->images == null)
-        <img src="images/icon1.png">
+<div class="table-follow">
+        <p class="table-top">
+        @if($post->user->images == "dawn.png")
+        <img src="{{ asset('images/icon1.png') }}" class="icon">
         @else
-        <img src="{{ asset('/storage/' .$post->images) }}" alt= "アイコン" class="icon">
+        <img src="{{ asset('/storage/' .$post->user->images) }}" alt= "アイコン" class="icon">
         @endif
-        </td>
-        <td>{{ $post ->user ->username }}</td>
-        <td>{{ $post ->post }}</td>
-        <td>{{ $post ->created_at }}</td>
-</tr>
+        </p>
+        <div class="table-followname">
+        <p class="follow-user">{{ $post ->user ->username }}</p>
+        <p class="follow-post">{{ $post ->post }}</p>
+        </div>
+        <p class="follow-time">{{ $post ->created_at }}</p>
+</div>
 @endforeach
 
 @endsection

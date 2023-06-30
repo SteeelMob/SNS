@@ -65,6 +65,8 @@ Route::post('/followList','PostsController@followList');
 Route::get('/followerList','PostsController@followerList')->name('followerList');
 Route::post('/followerList','PostsController@followerList');
 
+// Route::get('/followList','FollowsController@followIcon');
+
 //ログアウト実装ルーティング
 Route::post('/logout','Auth\LoginController@logout'); //getとpostがあるのはログインではgetでページ移動のためpostでmailとpasswordを入力してログインさせるため
 Route::get('/logout','Auth\LoginController@logout'); //上記で行ってるのと同じ原理でログアウトのルーティングを記述

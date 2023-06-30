@@ -25,6 +25,36 @@
 //     });
 // });
 
+// アコーディオンメニュー
+jQuery(function($){
+    $('.js-accordion-title').on('click',function(){
+        //コンテンツ開閉
+        $(this).next().slideToggle();
+        //矢印向き
+        $('.accordion-point').toggleClass('add');
+    })
+});
+
+$(".js-accordion-title").click(function () {
+    $(".accordion-point").toggleClass("add");
+  });
+
+// $(function(){
+//     $('.menu li').hide();
+//     $('.accordion dl dt').click(function(e){
+//         $('.accordion dl dt').toggleClass("open");
+//         $('.menu li').slideToggle('normal');
+//     });
+// });
+
+// $(function(){
+//     $(".drawer").click(function(){
+//         $(".drawer-list").slideToggle();
+//     });
+// });
+
+
+
 $(function(){
     // 編集ボタン(class="js-modal-open")が押されたら発火
     $('.js-modal-open').on('click',function(){

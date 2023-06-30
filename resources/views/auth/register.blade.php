@@ -4,7 +4,7 @@
 
 {!! Form::open(['url' => 'register' , 'class' => 'register-inner']) !!}
 
-<h2>新規ユーザー登録</h2>
+<p class ="register-front">新規ユーザー登録</p>
 <!-- エラーメッセージ -->
 <!-- <p>{{ $errors->count() }}</p>
 @if($errors->any())
@@ -29,9 +29,9 @@
 {{ Form::label('パスワード確認') }}
 {{ Form::password('password_confirmation',null,['class' => 'input']) }}
 
-{{ Form::submit('登録') }}
+{{ Form::submit('REGISTER',['class' =>'btn btn-danger btn-sm ']) }}
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<p class ="login-back"><a href="/login">ログイン画面へ戻る</a></p>
 
 {!! Form::close() !!}
 

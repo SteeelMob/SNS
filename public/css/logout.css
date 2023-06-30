@@ -13,6 +13,16 @@ body{
      background-image: linear-gradient(0deg,#d8db4f 0%, #1e6aed 100%);
 }
 
+a,a:hover,a:visited{
+    color: inherit;
+    text-decoration: none !important;
+    /* !importantで優先順位を一番へ */
+    white-space: nowrap;
+    
+
+}
+
+
 /* ログイン画面 */
 h1{
     text-align: center;
@@ -88,28 +98,95 @@ label{
 .create{
     margin-top: 60px;
     font-size: 12px;
-    color:#ccd8ff;
-    text-decoration: none;
+    color: #f4f4f4;
     position: absolute;
     left: 17%;
 }
 
 /* レジスター */
 .register-inner{
-    width: 190px;
-    height: 300px;
+    width: 180px;
+    height: 330px;
     background-color: rgba(97, 97, 97, 0.5);
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 5px;
     justify-content: center;
     position: relative;
     border-radius: 5px;
     border-style: solid;
 }
-h2{
-    font-size: 10px;
+.register-front{
+    text-align: center;
+    font-size: 15px;
+    padding-top: 15px;
+    color: #f4f4f4;
+    margin-bottom: 15px;
 }
 
+/* type passwordの場合は記述する */
+input[type="password"]{
+    margin: auto;
+    height: 27px;
+    width: 160px;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.login-back{
+    margin-top: 45px;
+    font-size: 13px;
+    color: #f4f4f4;
+    position: absolute;
+    left: 20%;
+}
+
+/* added */
+.add-inner{
+    width: 200px;
+    height: 200px;
+    background-color: rgba(97, 97, 97, 0.5);
+    margin: 0 auto;
+    margin-top: 5px;
+    justify-content: center;
+    position: relative;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.add-user{
+    /* margin-top: 10px; */
+    padding-top: 10px;
+    color: #f4f4f4;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+
+}
+
+.add-welcome{
+    color: #f4f4f4;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.add-text{
+    font-size: 12px;
+    color: #f4f4f4;
+    text-align: center;
+}
+.added-btn{
+    width: 25em;
+    margin:0 auto;
+    text-align: center;
+}
+
+.back-btn{
+    position: absolute;
+    top: 70%;
+    left: 26%;
+}
 
 
 

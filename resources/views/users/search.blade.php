@@ -2,10 +2,11 @@
 
 @section('content')
 
-<div>
-  <form action="{{ route('users.search') }}" method="GET">
-    <input type="text" name="keyword" value="{{ $keyword }}">
-    <input type="submit" value="検索">
+<div class="search-form">
+  <form action="{{ route('users.search') }}" method="GET" class="search-container">
+    <input type="text" name="keyword" value="{{ $keyword }}" placeholder="ユーザー名" class="search-text">
+    <!-- <input type="submit" value="検索"> -->
+    <button type="submit" class="search-click"><img src="images/search.jpg" class="search-img"></button>
   </form>
 </div>
 
@@ -18,35 +19,35 @@
 </div>
 @endif
 {!! Form::close() !!} -->
-
+<div class="search-inner">
 @foreach($users as $users)
-<div>
-    <tr>
-        <td>
-            @if($users->images == null)
-            <img src="images/icon1.png">
+
+    <div class="search-list">
+        <p>
+            @if($users->images == "dawn.png")
+            <img src="images/icon1.png" class="icon">
             @else
             <img src="storage/{{ $users -> images }}" alt="icon" class="icon">
             @endif
-        </td>
-        <td>{{ $users -> username }}</td>
-        <td>
+        </p>
+        <p class ="search-name">{{ $users -> username }}</p>
+        <p class ="search-btn">
             @if(auth()->user()->isFollowing($users->id))
             <form action="{{ route('unfollow', ['user' => $users->id]) }}" method="POST">
                  @csrf
                  {{ method_field('DELETE') }}
-                 <button type="submit" class="btn btn-danger">フォロー解除する</button>
+                 <button type="submit" class="search-follow search-delete btn btn-danger">フォロー解除</button>
             </form>
             @else
             <form action="{{ route('follow',  ['user' => $users->id]) }}" method="POST">
                  @csrf
-                 <button type="submit" class="btn btn-primary">フォローする</button>
+                 <button type="submit" class="search-follow btn btn-primary">フォローする</button>
                 </form>
             @endif
-        </td>
-    </tr>
-</div>
+        </p>
+        </div>
 @endforeach
+</div>
 
 
 @endsection

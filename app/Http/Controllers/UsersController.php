@@ -31,9 +31,11 @@ class UsersController extends Controller
             $query->where('username', 'LIKE', "%{$keyword}%");
         }
 
-        $users = $query->get();
+        $users = User::where("id" , "!=" , Auth::user()->id)->paginate();
 
-        return view('users.search', compact('users', 'keyword'));
+        $auth = Auth::user();
+
+        return view('users.search', compact('users', 'keyword','auth'));
     }
 
     //プロフィール
@@ -60,7 +62,7 @@ class UsersController extends Controller
                     'password' => 'required|string|min:8|max:20|alpha_dash|confirmed',
                     'password_confirmation' => 'required|string|min:8|max:20|alpha_dash',
                     'bio' => 'max:150',
-                    'images' => 'image|mimes:jpg,png,bmp,gif,svg',
+                    'images' => 'required|image|mimes:jpg,png,bmp,gif,svg',
                 ];
 
                 $message = [
@@ -95,7 +97,7 @@ class UsersController extends Controller
             $mail  = $request->input('mail');
             $password = bcrypt($request->input('password'));
             $bio = $request->input('bio');
-            $images = $request-> file('images')->store('public/storage');
+            $images = $request-> file('images')->store('storage','public');
             // dd($images);
 
 
@@ -131,9 +133,9 @@ class UsersController extends Controller
         {
             $list = User::where('id',$id)->first();
             $post =Post::with("user")->where('user_id',$id)->get();
-            
+            $auth = Auth::user();
 
-            return view('users.userprofile',compact('list','post'));
+            return view('users.userprofile',compact('list','post','auth'));
         }
 
 }

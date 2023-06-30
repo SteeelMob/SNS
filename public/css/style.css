@@ -3,12 +3,200 @@
 }
 body{
 } */
+
+.icon{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
 /* header */
 header{
     background:#186AC9;
+    padding: 10px;
+    /* width: 100%; */
+    /* display: block;
+    width: 100%;
+    position:fixed;
+    padding-top: 5px;
+    z-index: 2; */
+}
+.header-top{
+    /* padding:0 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* height: inherit; */
+    position: relative;
+}
+
+img{
+    /* 親クラスでサイズ変更するためにimgはmax100%指定 */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+h1{
+    /* width: 75px;
+    height: 28px; */
+    width: 80px;
+
 }
 
 
+
+/* .top-username{
+    vertical-align: middle;
+    justify-content: center;
+    margin-top: 9px;
+ } */
+
+/* アコーディオンメニュー */
+.accordion-container{
+    position:relative;
+    text-align: right;
+    width: 100%;
+    cursor: pointer;
+}
+
+.accordion-container .accordion-title{
+    /* display: block; */
+    /* position: relative; */
+    /* position: absolute; */
+    /* left: 88%; */
+    white-space: nowrap;
+    position: fixed;
+    display: flex;
+    top: 17px;
+    left: 88%;
+    margin: 0;
+    /* padding: 0.625em 0.625em 0.625em 0.625em; */
+    font-size: 1em;
+    font-weight: normal;
+    cursor: pointer;
+}
+/* .accordion-title{
+    display: flex;
+    position: absolute;
+    left: 88%;
+} */
+
+.accordion-title::after{
+    content: "";
+    position: absolute;
+    right: 25px;
+    top: 38%;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    width: 8px;
+    height: 8px;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.accordion-title.open:after{
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(135deg);
+    top: 45%;
+}
+
+.accordion-content{
+    display: none;
+    /* fixedは場所に固定で表示　スクロールしても固定される　top等で配置 */
+    position: fixed; 
+    top: 72px;
+    right: 0px;
+    background-color: #fff;
+    border: 2px solid #1155a3;
+    width: 20%;
+    /* padding-left: 1em;
+    padding-right: 3rem; */
+    /* text-align: center; */
+}
+
+.accordion-point{
+    /* 1個目の表示で上向きの矢印作成*/
+    content: '';
+    /* 親要素（border1の背景）からポジショニングする */
+    position: absolute;
+    top: 15px;
+    left: 70px;
+    /* 線の書式 */
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    /* 線の長さ */
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
+.accordion-point.add{
+    /* 1個目の表示で上向きの矢印作成*/
+    content: '';
+    /* 親要素（border1の背景）からポジショニングする */
+    position: absolute;
+    top: 5px;
+    left: 70px;
+    /* 線の書式 */
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    /* 線の長さ */
+    width: 10px;
+    height: 10px;
+    transform: rotate(-135deg);
+}
+
+.acc-img{
+    margin-left: 25px;
+}
+
+
+.accordion-list{
+    margin-top: 1rem;
+    padding-left: 0;
+}
+
+.accordion-btn{
+    /* border: 1px solid #123a78; */
+    text-align: center;
+    margin-bottom: 5px;
+    /* border-bottom: 2px solid #1155a3; */
+    
+}
+.accordion-btnn{
+    /* border: 1px solid #123a78; */
+    text-align: center;
+    margin-bottom: 5px;
+    background-color: #1155a3;
+    height: 50px;
+    padding-top: 13px;
+    /* border-bottom: 2px solid #1155a3; */
+    /* background-color: #1155a3; */
+}
+.accordion-btnnn{
+    /* border: 1px solid #123a78; */
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.accordion-btn a{
+    color:  #727272;
+    text-decoration: none;
+}
+.accordion-btnn a{
+    color: #fff;
+    text-decoration: none;
+}
+.accordion-btnnn a{
+    color:  #727272;
+    text-decoration: none;
+}
+
+.accordion-container{
+    /* width: 300px;
+    margin: 1.875em auto; */
+    vertical-align: middle;
+    justify-content: center;
+}
 
 /* main content */
 #row{
@@ -17,36 +205,481 @@ header{
 }
 #container{
     flex: 0 0 80%;
+    padding: 0;
 }
 #side-bar{
-    flex: 0 0 19%;
+    flex: 0 0 20%;
     border-left: 1px solid #727272;
+    font-size: 15px;
 }
 
 /* モーダル */
-.content{
+/* .content{
     margin: 0 auto;
     padding: 40px;
-}
+} */
 .modal{
     display: none;
     height: 100vh;
     position: fixed;
     top: 0;
     width: 100%;
+    /* background-color: rgba(97, 97, 97, 0.5); */
 }
-.modal__bg{
-    background: rgba(0,0,0,0.8);
+.modal-bg{
+    /* background: rgba(0,0,0,0.8); */
+    background-color: rgba(97, 97, 97, 0.5);
     height: 100vh;
     position: absolute;
     width: 100%;
 }
-.modal__content{
+
+.modal-content{
     background: #fff;
     left: 50%;
-    padding: 40px;
+    padding: 30px;
     position: absolute;
     top: 50%;
     transform: translate(-50%,-50%);
-    width: 60%;
+    width: 60% !important;
+}
+
+.modal_post{
+    position: absolute;
+    margin: auto;
+    transform: translate(-0%,-15%);
+    width: 85%;
+    height: 80px;
+    resize: none;
+    border: 2px solid #e0dcdc;;
+}
+
+.btn-up{
+    position: relative;
+    margin-right: 50px;
+    width: 100%;
+    /* padding:0; */
+    /* margin:0; */
+    background-color: transparent !important;
+    border:none;
+    /* font-size:0; */
+    /* line-height:0; */
+    overflow:visible;
+    cursor:pointer;
+    margin-top: 50px;
+}
+
+
+/* 投稿フォーム */
+.form-group{
+    position: relative;
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 5px solid #e0dcdc;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 7px;
+}
+
+.form-inner{
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.form-control{
+  
+    max-width: 900px !important;
+    min-width: 240px !important;
+    width: 100% !important;
+    height: 100px;
+    /* width: 900px !important; */
+    border: none !important;
+    resize: none;
+}
+
+.form-control::placeholder{
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-success{
+    width: 65px;
+    /* padding:0; */
+    /* margin:0; */
+    background-color: transparent !important;
+    border:none;
+    /* font-size:0; */
+    /* line-height:0; */
+    overflow:visible;
+    cursor:pointer;
+    margin-top: 50px;
+}
+
+
+/* 投稿内容 */
+/* .container{
+    padding: 0;
+} */
+
+.table-hover{
+    position: relative;
+    display: flex;
+    width: 100%;
+    /* flex-flow: column; */
+    justify-content: space-between;
+    border-bottom: 2px solid #e0dcdc;
+
+}
+.table-name{
+    width: 100%;
+}
+
+.content{
+    display: flex;
+    padding: 0%;
+    width: 100%;
+    /* justify-content: flex-end; */
+    justify-content: center;
+}
+
+.table-user{
+    font-weight: bold;
+}
+
+.table-post{
+    font-weight: normal;
+}
+
+.table-create{
+    width: 18%;
+}
+
+.table-time{
+    text-align: center;
+    font-size: 3px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.Update{
+    width: 15px;
+}
+
+.Trash{
+    width: 15px;
+}
+
+.Trash-h{
+    width: 50%;
+}
+
+/* .btn-trash:hover{
+    background: url('./images/trash-h.png');
+} */
+
+.btn-trash{
+    width: 50%;
+    /* height: 50%; */
+    top: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.btn-trash img:nth-child(2){
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-trash img:nth-child(1){
+    display: none;
+}
+
+.btn-trash:hover img:nth-child(1){
+    display: block;
+}
+
+.btn-trash:hover img:nth-child(2){
+    opacity: 0;
+    transition: opacity 0s;
+}
+
+/* サイド画面 */
+#confirm{
+    border-bottom: 2px solid #e0dcdc;
+}
+
+.side-name{
+    margin-top: 10px;
+}
+
+.count{
+    display: flex;
+    margin-top: 5px;
+    margin-left: 10px;
+    gap: 0px 13px;
+}
+
+
+.search-btn{
+    /* display: block; */
+    margin-top: 15px;
+    /* margin: auto; */
+    /* margin-right: 20px; */
+    border: none;
+    border-radius: 5px;
+    height: 26px;
+    margin-left: 25%;
+    margin-bottom: 10px;
+    width: 50%;
+    white-space: nowrap;
+}
+
+.side-btn{
+    border: none;
+    border-radius: 5px;
+    height: 26px;
+    margin-left: 50%;
+    margin-bottom: 10px;
+    width: 50%;
+    white-space: nowrap;
+}
+
+.side-btn a{
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.side-btn a:hover{
+    color: #fff;
+}
+.search-btn a{
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.search-btn a:hover{
+    color: #fff;
+}
+
+/* フォローリスト */
+.follow-list{
+    display: flex;
+    border-bottom: 5px solid #e0dcdc;
+
+}
+
+.follow-title{
+    font-size:larger;
+    margin-left: 50px;
+}
+
+
+.table-follow{
+    position: relative;
+    display: flex;
+    width: 100%;
+    /* flex-flow: column; */
+    justify-content: space-between;
+    border-bottom: 2px solid #e0dcdc;
+}
+
+.table-followname{
+    width: 100%;
+}
+
+.follow-time{
+    text-align: center;
+    font-size: 3px;
+    font-weight: 800;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.follow-user{
+    font-weight: bold;
+}
+
+.follow-post{
+    font-weight: normal;
+}
+
+/* 検索 */
+.search-form{
+    position: relative;
+    height: 100px;
+    border-bottom: 2px solid #e0dcdc;
+}
+
+.search-container{
+    position: absolute;
+    padding: 30px;
+}
+
+
+.search-container input[type="submit"]{
+    cursor: pointer;
+    font-family: FontAwesome;
+    border: none;
+    border-radius: 20%;
+    background: #3879D9;
+    color: #fff;
+    outline : none;
+    width: 2.0em;
+    height: 2.0em;
+  }
+  
+/* .search-inner{
+    position: relative;
+
+} */
+
+.search-list{
+    display: flex;
+    /* position: absolute; */
+    margin-left: 25%;
+    padding-top: 10px;
+}
+
+.search-name{
+    margin-left: 5%;
+}
+
+.search-follow{
+    /* margin-right: 60%; */
+    position: absolute;
+    right: 40%;
+    height: 35px;
+}
+
+.search-delete{
+    width: 94px;
+    white-space: nowrap;
+}
+
+.search-click{
+    border: none;
+    background-color: #fff;
+}
+
+.search-img{
+    width: 30px;
+}
+
+
+
+/* プロフィール編集 */
+.profile-content{
+    position: relative;
+    margin: 30px 16% 0px 16% ;
+    /* margin: auto; */
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.profile-main{
+    margin-right: 10px;
+    margin-top: 12px;
+
+}
+
+
+.profile-create{
+   /* width: 30%; */
+   margin-left: 20%;
+   margin-top: 20px;
+}
+
+/* .form-control{
+    display: none;
+} */
+
+.profile-info{
+    background-color: #e0dcdc;
+    border: 2px solid #c2c2c2;
+    border-radius: 3px;
+}
+
+
+.file-form{
+    position: absolute;
+    /* align-items:center は　flexとjustify-content:center　を併せて使うと子要素を中央寄せできる */
+    align-items:center;
+    display: flex;
+    justify-content: center;
+    width: 185px;
+    height: 52px;
+    background-color: #e0dcdc;
+    border: 2px solid #c2c2c2;
+    border-radius: 3px;
+}
+.profile-file{
+    margin: auto;
+    white-space: nowrap;
+    background-color: #fff;
+    color: #dfdfdf;
+    padding: 0 10px 0 10px;
+}
+
+.profile-submit{
+    position: absolute;
+    top: 320px;
+    left: 190px;
+}
+
+.profile-btn{
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    font-size: 12px;
+}
+
+/* 他のプロフィール（フォローリスト同様部分もあり） */
+
+.userpro-content{
+    margin-top: 15px;
+    position: relative;
+    display: flex;
+    border-bottom: 5px solid #e0dcdc;
+    
+    /* justify-content: space-between; */
+}
+
+.userpro-top{
+    margin-left: 50px;
+}
+.userpro-title{
+    margin-bottom: 10px;
+}
+
+.userpro-text{
+    margin-left: 20%;
+    margin-bottom: 10px;
+}
+
+.user-btn{
+    position: absolute;
+    top: 45%;
+    left: 85%;
+    /* margin-left: 50%; */
+    /* justify-content: flex-end; */
+    text-align: right;
+    border: none;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 3px 12px 3px 12px;
+}
+
+.table-top{
+    margin-left: 55px;
 }

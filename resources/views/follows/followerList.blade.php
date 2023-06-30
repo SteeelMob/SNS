@@ -1,24 +1,35 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="follower_list">
-    <h2>フォロワーリスト</h2>
+<div class="follow-list">
+    <p class="follow-title">Follower List</p>
+    @foreach($images as $images)
+    <a href="{{ route('userprofile',$images->id) }}">
+        @if($images ->id !== Auth::user()->id && $images->images == "dawn.png")
+        <img src="images/icon1.png" class="icon">
+        @elseif($images ->id !== Auth::user()->id)
+         <img src="{{ asset('/storage/' .$images->images) }}" alt= "アイコン" class="icon">
+        @endif
+        </a>
+    @endforeach
 </div>
 <div class= "clm_bottom follower_post_timeline">
     @foreach($list as $list)
-    <tr>
-        <td><a href="{{ route('userprofile',['id' => $list->user_id]) }}">
-        @if($list->images == null)
-        <img src="images/icon1.png">
+    <div class= "table-follow">
+        <p class="table-top"><a href="{{ route('userprofile',['id' => $list->user_id]) }}">
+        @if($list->user->images == "dawn.png")
+        <img src="images/icon1.png" class="icon">
         @else
-        <img src="{{ asset('/storage/' .$list->images) }}" alt= "アイコン" class="icon">
+        <img src="{{ asset('/storage/' .$list->user->images) }}" alt= "アイコン" class="icon">
         @endif
         </a>
-        </td>
-        <td>{{ $list->user->username }}</td>
-        <td>{{ $list->created_at }}</td>
-        <td>{{ $list->post }}</td>
-    </tr>
+        </p>
+        <div class="table-followname">
+        <p class="follow-user">{{ $list->user->username }}</p>
+        <p class="follow-post">{{ $list->post }}</p>
+</div>
+        <p class="follow-time">{{ $list->created_at }}</p>
+</div>
     @endforeach
 </div>
 @endsection
