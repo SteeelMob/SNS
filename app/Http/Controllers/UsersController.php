@@ -26,12 +26,13 @@ class UsersController extends Controller
         $keyword = $request->input('keyword');
 
         $query = User::query();
+        // ->where("id" , "!=" , Auth::user()->id)->paginate()
 
         if(!empty($keyword)) {
             $query->where('username', 'LIKE', "%{$keyword}%");
         }
 
-        $users = User::where("id" , "!=" , Auth::user()->id)->paginate();
+        $users = $query->where("id" , "!=" , Auth::user()->id)->get();
 
         $auth = Auth::user();
 
