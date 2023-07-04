@@ -9,6 +9,7 @@ use App\Follow;
 use App\Post;
 use Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -59,11 +60,16 @@ class UsersController extends Controller
             if($request->isMethod('post')){
                 $rules =[
                     'username' => 'required|string|min:2|max:12',
-                    'mail' => 'required|string|email|min:5|max:40|unique:users',
+                    'mail'=>['required','string','min:5','max:40', Rule::unique('users')->ignore(Auth::id())],
+                    // 'mail' => 'required|string|email|min:5|max:40|unique:users,mail,'.Auth::user()->id.',mail',
+                    // unique: uniqueチェックをしたいテーブル名,
+                    // uniqueチェックをしたいカラム名,
+                    // .uniqueチェックの対象外にしたいデータがあるレコードの主キー.
+                    // ',uniqueチェックの対象外にしたいデータがあるレコードの主キーのカラム名'
                     'password' => 'required|string|min:8|max:20|alpha_dash|confirmed',
                     'password_confirmation' => 'required|string|min:8|max:20|alpha_dash',
                     'bio' => 'max:150',
-                    'images' => 'required|image|mimes:jpg,png,bmp,gif,svg',
+                    'images' => 'image|mimes:jpg,png,bmp,gif,svg',
                 ];
 
                 $message = [
@@ -93,13 +99,18 @@ class UsersController extends Controller
                     ->withInput();
                 }
             }
+
             $id = $request ->input('id');
             $username  = $request->input('username');
             $mail  = $request->input('mail');
             $password = bcrypt($request->input('password'));
             $bio = $request->input('bio');
+            if(!empty($request->images)){
             $images = $request-> file('images')->store('storage','public');
             // dd($images);
+            }else{
+                $images=$request->images;
+            }
 
 
             \DB::table('users')
