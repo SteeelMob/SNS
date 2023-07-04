@@ -69,7 +69,7 @@ class UsersController extends Controller
                     'password' => 'required|string|min:8|max:20|alpha_dash|confirmed',
                     'password_confirmation' => 'required|string|min:8|max:20|alpha_dash',
                     'bio' => 'max:150',
-                    'images' => 'image|mimes:jpg,png,bmp,gif,svg',
+                    'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
                 ];
 
                 $message = [
@@ -105,12 +105,12 @@ class UsersController extends Controller
             $mail  = $request->input('mail');
             $password = bcrypt($request->input('password'));
             $bio = $request->input('bio');
-            if(!empty($request->images)){
+            // if(!empty($request->images)){
             $images = $request-> file('images')->store('storage','public');
             // dd($images);
-            }else{
-                $images=$request->images;
-            }
+            // }else{
+                // $images=$request->images;
+            // }
 
 
             \DB::table('users')
