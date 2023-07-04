@@ -105,12 +105,13 @@ class UsersController extends Controller
             $mail  = $request->input('mail');
             $password = bcrypt($request->input('password'));
             $bio = $request->input('bio');
-            // if(!empty($request->images)){
+            if($request->hasFile('images')){
             $images = $request-> file('images')->store('storage','public');
             // dd($images);
-            // }else{
-                // $images=$request->images;
-            // }
+            }
+            else{
+                $images=Auth::user()->images;
+            }
 
 
             \DB::table('users')
