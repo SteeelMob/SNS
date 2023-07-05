@@ -50,7 +50,7 @@ Route::get('/profile','UsersController@profile');
 //プロフィール編集
 Route::post('/profile/{id}/update','UsersController@update');
 //他のプロフィール
-Route::get('/users/{id}/userprofile','UsersController@userProfile')->name('userprofile');
+Route::get('/userprofile/{id}','UsersController@userProfile')->name('userprofile');
 
 
 

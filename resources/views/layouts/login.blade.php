@@ -26,7 +26,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!-- jQueryはヘッダー内へ -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 </head>
 
 <body>
@@ -91,6 +91,7 @@
     </footer>
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
+
     <!--JavaScriptのBootstrap のCDN 共通ファイルのHTML　body内に入れる必要がある--><!--CDNとは　オンラインで外部のサービスを利用できるシステム-->
 
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
@@ -99,6 +100,7 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
        crossorigin="anonymous"></script>
-</body>
+
+ 
 </body>
 </html>
