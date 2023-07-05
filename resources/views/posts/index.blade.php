@@ -35,6 +35,7 @@
         <div class="table-create">
         <p class ="table-time">{{ $list ->created_at }}</p>
         <!--更新用-->
+        @if($list->user->id == "$auth->id")
         <div class="content">
             <a class="js-modal-open" href="" post="{{$list ->post }}" post_id="{{ $list->id }}">
             <img class="Update" src="./images/edit.png" alt="編集" />
@@ -48,6 +49,7 @@
         </a>
         </div>
        </div>
+       @endif
        </div>
        <!-- </ul> -->
        </div>

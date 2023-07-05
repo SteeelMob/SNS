@@ -60,10 +60,10 @@
 {{ Form::text('mail',$auth->mail,['class' => 'input profile-info'] ) }}
 </p>
 <p>
-{{ Form::text('password',null,['class' => 'input profile-info'] ) }}
+{{ Form::password('password',null,['class' => 'input profile-info'] ) }}
 </p>
 <p>
-{{ Form::text('password_confirmation',null,['class' => 'input profile-info'] ) }}
+{{ Form::password('password_confirmation',null,['class' => 'input profile-info'] ) }}
 </p>
 <p>
 {{ Form::text('bio',$auth->bio,['class' => 'input profile-info']) }}

@@ -1,6 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
+
 <div class="userpro-content">
         <p class="userpro-top">
         @if($list->images == "dawn.png")

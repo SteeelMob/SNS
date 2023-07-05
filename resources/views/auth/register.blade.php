@@ -6,7 +6,7 @@
 
 <p class ="register-front">新規ユーザー登録</p>
 <!-- エラーメッセージ -->
-<!-- <p>{{ $errors->count() }}</p>
+<!-- <p>{{ $errors->count() }}</p> -->
 @if($errors->any())
 <div>
     <ul>
@@ -15,7 +15,7 @@
         @endforeach
     </ul>
 </div>
-@endif -->
+@endif
 
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}
