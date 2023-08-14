@@ -3,8 +3,8 @@
 @section('content')
 
 @if($errors->any())
-<div>
-    <ul>
+<div >
+    <ul class="vm" style="text-align:center;">
         @foreach($errors->all() as $error)
         <li>{{ $error }}</li>
         @endforeach

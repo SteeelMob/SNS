@@ -4,6 +4,9 @@
 body{
 } */
 
+/* バリデーション */
+
+
 .icon{
     border-radius: 50%;
     width: 30px;
@@ -593,11 +596,13 @@ ul{
     right: 40%;
     height: 35px;
     width: 94.29px;
+    white-space: nowrap;
 }
 
 .search-delete{
     width: 94.29px;
     font-size: small;
+    white-space: nowrap;
 }
 
 .search-click{

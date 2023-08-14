@@ -137,6 +137,10 @@ class RegisterController extends Controller
                 'password.max' => 'パスワードは8文字以上、20文字以下で入力してください',
                 'password.alpha_dash' => 'パスワードは英数字のみで入力してください',
                 'password.confirmed' => '確認パスワードが一致してません',
+                'password_confirmation.required' =>'パスワード確認を入力してください',
+                'password_confirmation.min' =>'パスワードは8文字以上、20文字以下で入力してください',
+                'password_confirmation.max' =>'パスワードは8文字以上、20文字以下で入力してください',
+                'password_confirmation.alpha_num' =>'パスワードは英数字のみで入力してください',
             ];
 
             $validator =Validator::make($data,$rules,$message);
