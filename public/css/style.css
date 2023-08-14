@@ -594,15 +594,15 @@ ul{
     /* margin-right: 60%; */
     position: absolute;
     right: 40%;
-    height: 35px;
-    width: 94.29px;
+    /* height: 35px; */
+    /* width: 94.29px; */
     white-space: nowrap;
     text-align: right;
     padding: 3px 12px 3px 12px;
 }
 
 .search-delete{
-    width: 94.29px;
+    /* width: 94.29px; */
     font-size: small;
     white-space: nowrap;
     text-align: right;
