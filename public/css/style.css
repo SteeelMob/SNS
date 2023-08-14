@@ -550,6 +550,14 @@ ul{
 }
 
 /* 検索 */
+.word-key{
+    position: absolute;
+    top: 33px;
+    left: 330px;
+    white-space: nowrap;
+    font-size: large;
+}
+
 .search-form{
     position: relative;
     height: 100px;
