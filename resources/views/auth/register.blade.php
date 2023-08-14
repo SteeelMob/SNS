@@ -2,11 +2,6 @@
 
 @section('content')
 
-{!! Form::open(['url' => 'register' , 'class' => 'register-inner']) !!}
-
-<p class ="register-front">新規ユーザー登録</p>
-<!-- エラーメッセージ -->
-<!-- <p>{{ $errors->count() }}</p> -->
 @if($errors->any())
 <div>
     <ul>
@@ -16,6 +11,13 @@
     </ul>
 </div>
 @endif
+
+{!! Form::open(['url' => 'register' , 'class' => 'register-inner']) !!}
+
+<p class ="register-front">新規ユーザー登録</p>
+<!-- エラーメッセージ -->
+<!-- <p>{{ $errors->count() }}</p> -->
+
 
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}
