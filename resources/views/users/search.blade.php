@@ -7,7 +7,9 @@
     <input type="text" name="keyword" value="" placeholder="ユーザー名" class="search-text">
     <!-- <input type="submit" value="検索"> -->
     <button type="submit" class="search-click"><img src="images/search.jpg" class="search-img"></button>
+    @if(!empty($keyword))
     <p class="word-key">検索ワード：{{ $keyword }}</p>
+    @endif
   </form>
 </div>
 
